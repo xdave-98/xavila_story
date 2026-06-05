@@ -771,6 +771,11 @@
   gap: 0.55rem;
 }
 .mural-photo {
+  display: block;
+  width: 100%;
+  appearance: none;
+  font: inherit;
+  cursor: zoom-in;
   aspect-ratio: 1 / 1;
   padding: 8px 8px 20px;
   background: #fffaf2;
@@ -900,6 +905,34 @@
   align-items: center;
   gap: 0.9rem;
   margin-top: 1.4rem;
+}
+
+/* Tap-to-zoom lightbox for a placed photo */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-items: center;
+  padding: 5vmin;
+  cursor: zoom-out;
+  background: rgba(74, 59, 51, 0.62);
+  backdrop-filter: blur(6px);
+}
+.lightbox-frame {
+  margin: 0;
+  padding: 14px 14px 20px;
+  background: #fffaf2;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lift);
+  max-width: min(86vw, 720px);
+}
+.lightbox-frame img {
+  display: block;
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 /* ===========================================================================

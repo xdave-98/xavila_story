@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { moments } from "../data/moments";
 import { config, finale } from "../data/finale";
 import { Petals } from "./Petals";
@@ -9,13 +10,31 @@ interface Props {
   onReplay: () => void;
 }
 
+interface Zoom {
+  src: string;
+  alt: string;
+}
+
 const BASE = 0.4;
 const STEP = 0.14;
+const NEXT_IMAGE = "/photos/next.jpg";
 
 export function RevealScreen({ onReplay }: Props) {
   const ordered = [...moments].sort((a, b) => a.order - b.order);
   const n = ordered.length;
   const msgDelay = BASE + (n + 1) * STEP + 0.25;
+
+  const [zoom, setZoom] = useState<Zoom | null>(null);
+
+  // Close the zoomed photo with Escape.
+  useEffect(() => {
+    if (!zoom) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setZoom(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [zoom]);
 
   const itemIn = {
     initial: { opacity: 0, y: 24, rotate: -4 },
@@ -48,9 +67,14 @@ export function RevealScreen({ onReplay }: Props) {
               animate={itemIn.animate}
               transition={{ delay: BASE + i * STEP, type: "spring", stiffness: 200, damping: 18 }}
             >
-              <div className="mural-photo">
+              <button
+                type="button"
+                className="mural-photo"
+                onClick={() => setZoom({ src: m.image, alt: m.revealTitle ?? m.title })}
+                aria-label={`Agrandir « ${m.revealTitle ?? m.title} »`}
+              >
                 <img src={m.image} alt={m.title} draggable={false} />
-              </div>
+              </button>
               <figcaption>
                 <strong>{m.revealTitle ?? m.title}</strong>
                 <span>{m.label}</span>
@@ -66,9 +90,17 @@ export function RevealScreen({ onReplay }: Props) {
             animate={itemIn.animate}
             transition={{ delay: BASE + n * STEP, type: "spring", stiffness: 200, damping: 18 }}
           >
-            <div className="mural-photo">
-              <img src="/photos/next.jpg" alt="What's next" draggable={false} />
-            </div>
+            <button
+              type="button"
+              className="mural-photo"
+              onClick={() => setZoom({ src: NEXT_IMAGE, alt: "What's next?" })}
+              aria-label="Agrandir « What's next? »"
+            >
+              <img src={NEXT_IMAGE} alt="What's next" draggable={false} />
+            </button>
+            <figcaption>
+              <strong>What's next ?</strong>
+            </figcaption>
           </motion.figure>
         </div>
 
@@ -107,6 +139,29 @@ export function RevealScreen({ onReplay }: Props) {
           </button>
         </motion.div>
       </motion.div>
+
+      <AnimatePresence>
+        {zoom && (
+          <motion.div
+            className="lightbox"
+            onClick={() => setZoom(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <motion.figure
+              className="lightbox-frame"
+              initial={{ scale: 0.82, opacity: 0, y: 10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.86, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 240, damping: 22 }}
+            >
+              <img src={zoom.src} alt={zoom.alt} draggable={false} />
+            </motion.figure>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
