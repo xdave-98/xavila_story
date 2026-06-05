@@ -8,8 +8,8 @@
 //   4. `order` is the chronological position on the timeline (1 = first).
 //      Keep them 1..N with no gaps. Add or remove entries freely.
 //
-// The placeholder images shipped in public/photos/ are labelled so you can see
-// which slot each one fills — replace them with your own pictures.
+// The images currently shipped in public/photos/ are representative pictures
+// pulled from the web as stand-ins — replace them with your own photos.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface Moment {
@@ -31,34 +31,62 @@ export const moments: Moment[] = [
     title: "EDF",
     date: "Le tout début",
     caption: "La première fois que nos regards se sont croisés.",
-    image: "/photos/moment-1.svg",
+    image: "/photos/edf.jpg",
   },
   {
     order: 2,
-    title: "Moment n°2",
+    title: "In-Seoul",
     date: "À compléter",
-    caption: "Raconte-moi ce souvenir…",
-    image: "/photos/moment-2.svg",
+    caption: "Notre premier vrai rendez-vous, dans ce petit coréen de Paris.",
+    image: "/photos/in-seoul.jpg",
   },
   {
     order: 3,
-    title: "Moment n°3",
+    title: "L'abri de bus",
     date: "À compléter",
-    caption: "Raconte-moi ce souvenir…",
-    image: "/photos/moment-3.svg",
+    caption: "Cet abri de bus près des Pyramides… tu te souviens ?",
+    image: "/photos/abribus.jpg",
   },
   {
     order: 4,
-    title: "Moment n°4",
+    title: "Tour Eiffel",
     date: "À compléter",
-    caption: "Raconte-moi ce souvenir…",
-    image: "/photos/moment-4.svg",
+    caption: "Un baiser au pied de la Dame de fer.",
+    image: "/photos/eiffel-kiss.jpg",
   },
   {
     order: 5,
-    title: "Moment n°5",
+    title: "Le golden",
     date: "À compléter",
-    caption: "Raconte-moi ce souvenir…",
-    image: "/photos/moment-5.svg",
+    caption: "Le petit golden retriever qui nous a fait fondre.",
+    image: "/photos/golden-retriever.jpg",
+  },
+  {
+    order: 6,
+    title: "Matcha & Americano",
+    date: "À compléter",
+    caption: "Toi le matcha, moi l'americano glacé — notre rituel.",
+    image: "/photos/matcha-americano.jpg",
+  },
+  {
+    order: 7,
+    title: "Mini-golf Ocean",
+    date: "À compléter",
+    caption: "La revanche au mini-golf Ocean est toujours en attente.",
+    image: "/photos/minigolf.jpg",
+  },
+  {
+    order: 8,
+    title: "Boonny",
+    date: "À compléter",
+    caption: "Notre Boonny — moitié panda, moitié lapin, tout à nous.",
+    image: "/photos/boonny.jpg",
+  },
+  {
+    order: 9,
+    title: "PSG, Champions",
+    date: "À compléter",
+    caption: "Le PSG soulève enfin la Ligue des Champions, et nous aussi on a gagné.",
+    image: "/photos/psg-ucl.jpg",
   },
 ];

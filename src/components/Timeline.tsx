@@ -57,7 +57,7 @@ export function Timeline({ slots, placed, hoverSlot, rejectedSlot, registerSlot 
                     >
                       <img src={slot.image} alt={slot.title} draggable={false} />
                       <span className="slot-caption">{slot.title}</span>
-                      <Sparkle />
+                      <RewardBurst />
                     </motion.div>
                   ) : (
                     <motion.span
@@ -82,28 +82,40 @@ export function Timeline({ slots, placed, hoverSlot, rejectedSlot, registerSlot 
   );
 }
 
-function Sparkle() {
+// Celebratory burst when a photo lands in its correct slot: an expanding gold
+// ring, a sparkle star, and a spray of little hearts flying outward.
+function RewardBurst() {
+  const hearts = Array.from({ length: 10 }, (_, i) => {
+    const angle = (i / 10) * Math.PI * 2;
+    const dist = 46 + (i % 3) * 12;
+    return { id: i, dx: Math.cos(angle) * dist, dy: Math.sin(angle) * dist };
+  });
+
   return (
-    <motion.svg
-      className="sparkle"
-      viewBox="0 0 100 100"
-      initial={{ opacity: 1, scale: 0.2 }}
-      animate={{ opacity: 0, scale: 2.2 }}
-      transition={{ duration: 0.9, ease: "easeOut" }}
-      aria-hidden
-    >
-      {[0, 60, 120, 180, 240, 300].map((deg) => (
-        <rect
-          key={deg}
-          x="48"
-          y="6"
-          width="4"
-          height="20"
-          rx="2"
-          fill="var(--gold-soft)"
-          transform={`rotate(${deg} 50 50)`}
-        />
+    <div className="reward" aria-hidden>
+      <motion.span
+        className="reward-ring"
+        initial={{ scale: 0.2, opacity: 0.85 }}
+        animate={{ scale: 2.6, opacity: 0 }}
+        transition={{ duration: 0.75, ease: "easeOut" }}
+      />
+      <motion.span
+        className="reward-ring reward-ring--two"
+        initial={{ scale: 0.2, opacity: 0.6 }}
+        animate={{ scale: 2, opacity: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.08 }}
+      />
+      {hearts.map((h) => (
+        <motion.span
+          key={h.id}
+          className="reward-heart"
+          initial={{ x: 0, y: 0, scale: 0.5, opacity: 1 }}
+          animate={{ x: h.dx, y: h.dy, scale: 1.15, opacity: 0 }}
+          transition={{ duration: 0.85, ease: "easeOut", delay: h.id * 0.012 }}
+        >
+          {h.id % 2 === 0 ? "❤" : "✦"}
+        </motion.span>
       ))}
-    </motion.svg>
+    </div>
   );
 }

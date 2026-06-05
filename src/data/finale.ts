@@ -10,8 +10,8 @@ export const config = {
   subtitle: "Replace les souvenirs dans l'ordre… avant que le temps ne file.",
   /** The two names shown on the title screen. */
   names: "Xavier  &  Nila",
-  /** Seconds on the clock. 5 photos → 60s is gentle; lower it to raise stakes. */
-  durationSeconds: 60,
+  /** Seconds on the clock. 9 photos → 80s is gentle; lower it to raise stakes. */
+  durationSeconds: 80,
 };
 
 export const finale = {

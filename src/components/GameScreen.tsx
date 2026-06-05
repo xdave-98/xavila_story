@@ -13,7 +13,7 @@ interface Props {
   total: number;
   timeLeft: number;
   durationMs: number;
-  onPlace: (order: number) => boolean;
+  onPlace: (order: number) => void;
 }
 
 export function GameScreen({ floating, placed, placedCount, total, timeLeft, durationMs, onPlace }: Props) {
