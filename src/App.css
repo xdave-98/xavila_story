@@ -256,6 +256,38 @@
   color: var(--ink-faint);
 }
 
+/* Catch celebration wash across the background (behind the photos) */
+.catch-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+.catch-bloom {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 64vmin;
+  height: 64vmin;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(231, 179, 177, 0.5) 0%,
+    rgba(221, 196, 136, 0.28) 42%,
+    transparent 70%
+  );
+  will-change: transform, opacity;
+}
+.catch-heart {
+  position: absolute;
+  bottom: 36%;
+  color: var(--rose);
+  filter: drop-shadow(0 3px 8px rgba(168, 85, 99, 0.3));
+  will-change: transform, opacity;
+}
+
 /* The "sky" where photos drift */
 .sky {
   position: relative;
@@ -630,6 +662,16 @@
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+}
+/* Dimmed version that sits quietly behind active gameplay */
+.love-bg--subtle .aurora {
+  opacity: 0.36;
+}
+.love-bg--subtle .bokeh {
+  transform: scale(0.8);
+}
+.love-bg--subtle .twinkle {
+  color: var(--gold-soft);
 }
 
 /* Drifting aurora blobs — soft, blurred, slowly breathing colour */

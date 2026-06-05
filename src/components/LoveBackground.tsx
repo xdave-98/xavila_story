@@ -7,13 +7,22 @@ function rand(seed: number): number {
   return x - Math.floor(x);
 }
 
+interface Props {
+  /** Dimmed, lower-density version for behind active gameplay. */
+  subtle?: boolean;
+}
+
 // A soft, dreamy background: drifting aurora blobs, rising bokeh lights, and
 // twinkling sparkles. Pure CSS animation, pointer-events: none, sits behind
 // the foreground content.
-export function LoveBackground() {
+export function LoveBackground({ subtle = false }: Props) {
+  const counts = subtle
+    ? { bokeh: 12, twinkle: 18, heart: 6 }
+    : { bokeh: 22, twinkle: 34, heart: 12 };
+
   const bokeh = useMemo(
     () =>
-      Array.from({ length: 22 }, (_, i) => {
+      Array.from({ length: counts.bokeh }, (_, i) => {
         const s = i + 1;
         return {
           id: i,
@@ -24,12 +33,12 @@ export function LoveBackground() {
           drift: (rand(s + 1.6) - 0.5) * 160,
         };
       }),
-    [],
+    [counts.bokeh],
   );
 
   const twinkles = useMemo(
     () =>
-      Array.from({ length: 34 }, (_, i) => {
+      Array.from({ length: counts.twinkle }, (_, i) => {
         const s = i + 100;
         return {
           id: i,
@@ -40,12 +49,12 @@ export function LoveBackground() {
           size: 4 + rand(s + 1.7) * 7,
         };
       }),
-    [],
+    [counts.twinkle],
   );
 
   const hearts = useMemo(
     () =>
-      Array.from({ length: 12 }, (_, i) => {
+      Array.from({ length: counts.heart }, (_, i) => {
         const s = i + 300;
         return {
           id: i,
@@ -57,11 +66,11 @@ export function LoveBackground() {
           glyph: rand(s + 2.3) > 0.5 ? "❤" : "❀",
         };
       }),
-    [],
+    [counts.heart],
   );
 
   return (
-    <div className="love-bg" aria-hidden>
+    <div className={`love-bg${subtle ? " love-bg--subtle" : ""}`} aria-hidden>
       <span className="aurora aurora--1" />
       <span className="aurora aurora--2" />
       <span className="aurora aurora--3" />
@@ -84,23 +93,25 @@ export function LoveBackground() {
         ))}
       </div>
 
-      <div className="hearts-layer">
-        {hearts.map((h) => (
-          <span
-            key={h.id}
-            className="love-heart"
-            style={{
-              left: `${h.left}%`,
-              fontSize: `${h.size}px`,
-              animationDelay: `${h.delay}s`,
-              animationDuration: `${h.duration}s`,
-              ["--drift" as string]: `${h.drift}px`,
-            }}
-          >
-            {h.glyph}
-          </span>
-        ))}
-      </div>
+      {!subtle && (
+        <div className="hearts-layer">
+          {hearts.map((h) => (
+            <span
+              key={h.id}
+              className="love-heart"
+              style={{
+                left: `${h.left}%`,
+                fontSize: `${h.size}px`,
+                animationDelay: `${h.delay}s`,
+                animationDuration: `${h.duration}s`,
+                ["--drift" as string]: `${h.drift}px`,
+              }}
+            >
+              {h.glyph}
+            </span>
+          ))}
+        </div>
+      )}
 
       <div className="twinkle-layer">
         {twinkles.map((t) => (
