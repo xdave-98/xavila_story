@@ -8,41 +8,44 @@ const DURATION_MS = config.durationSeconds * 1000;
 
 const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 
-// Build a wandering path that sweeps the photo across most of the screen
-// horizontally (big vw travel) with a gentler vertical bob. Offsets are in
-// vw units (see App.css `.photo-frame` translate) so they scale with width.
-function makePath(baseX: number): [Waypoint, Waypoint, Waypoint, Waypoint] {
-  // Four well-spread horizontal targets across the viewport, shuffled so the
-  // photo criss-crosses rather than drifting one direction.
-  const targetsX = shuffle([10, 34, 60, 84]).map((t) => t + (Math.random() - 0.5) * 10);
-  const bobY = shuffle([-16, -7, 8, 15]);
-  return targetsX.map((tx, i) => ({
-    x: Math.round(tx - baseX), // vw offset from the anchor → crosses the screen
-    y: Math.round(bobY[i] + (Math.random() - 0.5) * 6),
-    r: Math.round((Math.random() - 0.5) * 18),
-  })) as [Waypoint, Waypoint, Waypoint, Waypoint];
+// A gentle looping drift kept SMALL (in px) so a photo stays inside its own
+// lane — never wandering off-screen or into a neighbour's space. The offsets
+// orbit a little ellipse around the anchor (see App.css `.photo-frame`).
+function makePath(): [Waypoint, Waypoint, Waypoint, Waypoint] {
+  const a = 15 + Math.random() * 8; // amplitude in px (~15–23)
+  const j = () => (Math.random() - 0.5) * 6;
+  const r = () => Math.round((Math.random() - 0.5) * 6);
+  return [
+    { x: Math.round(a + j()), y: Math.round(-a * 0.55 + j()), r: r() },
+    { x: Math.round(a * 0.3 + j()), y: Math.round(a * 0.7 + j()), r: r() },
+    { x: Math.round(-a * 0.7 + j()), y: Math.round(a * 0.3 + j()), r: r() },
+    { x: Math.round(-a * 0.4 + j()), y: Math.round(-a * 0.6 + j()), r: r() },
+  ];
 }
 
-// Spread photos across the upper "sky" as anchors; each then wanders widely.
+// Lay the photos out on a tidy grid of non-overlapping lanes within the sky.
+// Each photo only drifts gently inside its own cell, so they never cross each
+// other, stay fully on-screen, and are easy to catch.
 function layoutMoments(): FloatingMoment[] {
   const shuffled = shuffle(moments);
-  const cols = Math.ceil(Math.sqrt(shuffled.length));
+  const n = shuffled.length;
+  const cols = Math.min(4, n);
+  const rows = Math.ceil(n / cols);
+  // Keep a 10% margin on the sides and spread rows in the 16%–64% band.
+  const colStep = 80 / cols;
   return shuffled.map((m, i) => {
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const cellW = 100 / cols;
-    const rows = Math.ceil(shuffled.length / cols);
-    const cellH = 56 / rows;
-    const baseX = Math.min(84, Math.max(10, col * cellW + cellW / 2 + (Math.random() - 0.5) * cellW * 0.4));
-    const baseY = Math.min(58, Math.max(8, 8 + row * cellH + (Math.random() - 0.5) * cellH * 0.5));
+    const baseX = 10 + (col + 0.5) * colStep + (Math.random() - 0.5) * colStep * 0.16;
+    const baseY = (rows === 1 ? 40 : 16 + (row / (rows - 1)) * 48) + (Math.random() - 0.5) * 5;
     return {
       ...m,
       baseX,
       baseY,
-      tilt: (Math.random() - 0.5) * 10,
-      duration: 17 + Math.random() * 9,
-      delay: Math.random() * 12,
-      path: makePath(baseX),
+      tilt: (Math.random() - 0.5) * 8,
+      duration: 14 + Math.random() * 6,
+      delay: Math.random() * 8,
+      path: makePath(),
     };
   });
 }

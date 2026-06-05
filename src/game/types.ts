@@ -7,11 +7,11 @@ export interface Point {
   y: number;
 }
 
-/** One stop on a photo's wandering path, as a translate offset + rotation. */
+/** One stop on a photo's gentle drift loop, as a small px offset + rotation. */
 export interface Waypoint {
-  /** Horizontal offset in viewport-width units (vw). */
+  /** Horizontal offset in px (kept small so the photo stays in its lane). */
   x: number;
-  /** Vertical offset in viewport-height units (vh). */
+  /** Vertical offset in px. */
   y: number;
   /** Rotation in degrees at this waypoint. */
   r: number;
