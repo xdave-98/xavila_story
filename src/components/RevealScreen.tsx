@@ -67,11 +67,6 @@ export function RevealScreen({ onReplay }: Props) {
             <div className="mural-photo mural-photo--blank">
               <span className="next-text">What's next?</span>
             </div>
-            <figcaption>
-              <strong>La suite</strong>
-              <span>À ÉCRIRE ENSEMBLE</span>
-              <em>Une page encore blanche, rien qu'à nous.</em>
-            </figcaption>
           </motion.figure>
         </div>
 
