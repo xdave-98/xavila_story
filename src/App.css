@@ -729,6 +729,13 @@
   overflow-y: auto;
   padding: clamp(1.5rem, 5vh, 3.5rem) 1rem;
 }
+/* Dynamic background stays fixed behind the (scrollable) reveal content */
+.reveal-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
 .reveal-card {
   position: relative;
   z-index: 2;
@@ -785,6 +792,26 @@
   border-radius: 4px;
   display: block;
 }
+/* Blank "what's next" tile — an empty page of the fresque */
+.mural-photo--blank {
+  display: grid;
+  place-items: center;
+  background: rgba(255, 250, 242, 0.6);
+  border: 2px dashed var(--gold-line);
+  box-shadow: inset 0 0 30px rgba(221, 196, 136, 0.18);
+  padding: 8px;
+}
+.mural-item--next:hover .mural-photo--blank {
+  border-color: var(--rose);
+}
+.next-text {
+  font-family: var(--font-script);
+  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+  line-height: 1.15;
+  text-align: center;
+  color: var(--gold);
+  animation: numberGlow 2.8s ease-in-out infinite;
+}
 .mural-item figcaption {
   display: flex;
   flex-direction: column;
@@ -806,44 +833,52 @@
   font-size: 0.96rem;
   color: var(--ink-soft);
 }
+/* Closing love note — quiet, centered, editorial */
 .message {
-  margin-top: 0.4rem;
-  max-width: 42ch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  max-width: 46ch;
+  margin: 1.6rem auto 0.4rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--gold-line);
+}
+.message-flourish {
+  margin-top: -2.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  color: var(--gold);
+  background: var(--cream-card);
+  border-radius: 50%;
 }
 .message p {
-  margin: 0.35rem 0;
+  margin: 0;
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.32rem;
   font-style: italic;
-  line-height: 1.4;
-  color: var(--ink);
+  line-height: 1.55;
+  color: var(--ink-soft);
 }
-.message .signature {
-  margin-top: 1rem;
-  font-family: var(--font-script);
+.message p.message-lead {
+  font-size: 1.6rem;
   font-style: normal;
-  font-size: 1.5rem;
   color: var(--rose-deep);
+}
+.message-sign {
+  font-size: 1.4rem;
+  color: var(--rose);
+  animation: beat 1.8s ease-in-out infinite;
 }
 .reveal-foot {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.9rem;
-  margin-top: 0.6rem;
-}
-.final-time {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  font-size: 0.82rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-}
-.record {
-  color: var(--gold);
-  font-weight: 700;
+  margin-top: 1.4rem;
 }
 
 /* ===========================================================================

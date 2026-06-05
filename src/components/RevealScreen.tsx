@@ -2,20 +2,30 @@ import { motion } from "framer-motion";
 import { moments } from "../data/moments";
 import { config, finale } from "../data/finale";
 import { Petals } from "./Petals";
-import { formatTime } from "../game/format";
+import { LoveBackground } from "./LoveBackground";
 
 interface Props {
-  finalMs: number | null;
-  bestMs: number | null;
   onReplay: () => void;
 }
 
-export function RevealScreen({ finalMs, bestMs, onReplay }: Props) {
+const BASE = 0.4;
+const STEP = 0.14;
+
+export function RevealScreen({ onReplay }: Props) {
   const ordered = [...moments].sort((a, b) => a.order - b.order);
-  const isRecord = finalMs != null && bestMs != null && Math.abs(finalMs - bestMs) < 1;
+  const n = ordered.length;
+  const msgDelay = BASE + (n + 1) * STEP + 0.25;
+
+  const itemIn = {
+    initial: { opacity: 0, y: 24, rotate: -4 },
+    animate: { opacity: 1, y: 0, rotate: 0 },
+  };
 
   return (
     <div className="screen reveal-screen">
+      <div className="reveal-bg">
+        <LoveBackground />
+      </div>
       <Petals count={26} variant="burst" />
 
       <motion.div
@@ -32,9 +42,9 @@ export function RevealScreen({ finalMs, bestMs, onReplay }: Props) {
             <motion.figure
               className="mural-item"
               key={m.order}
-              initial={{ opacity: 0, y: 24, rotate: -4 }}
-              animate={{ opacity: 1, y: 0, rotate: 0 }}
-              transition={{ delay: 0.4 + i * 0.16, type: "spring", stiffness: 200, damping: 18 }}
+              initial={itemIn.initial}
+              animate={itemIn.animate}
+              transition={{ delay: BASE + i * STEP, type: "spring", stiffness: 200, damping: 18 }}
             >
               <div className="mural-photo">
                 <img src={m.image} alt={m.title} draggable={false} />
@@ -46,43 +56,50 @@ export function RevealScreen({ finalMs, bestMs, onReplay }: Props) {
               </figcaption>
             </motion.figure>
           ))}
+
+          {/* The next, still-blank page of the fresque */}
+          <motion.figure
+            className="mural-item mural-item--next"
+            initial={itemIn.initial}
+            animate={itemIn.animate}
+            transition={{ delay: BASE + n * STEP, type: "spring", stiffness: 200, damping: 18 }}
+          >
+            <div className="mural-photo mural-photo--blank">
+              <span className="next-text">What's next?</span>
+            </div>
+            <figcaption>
+              <strong>La suite</strong>
+              <span>À ÉCRIRE ENSEMBLE</span>
+              <em>Une page encore blanche, rien qu'à nous.</em>
+            </figcaption>
+          </motion.figure>
         </div>
 
-        <div className="message">
+        <motion.div
+          className="message"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: msgDelay, duration: 1 }}
+        >
+          <span className="message-flourish" aria-hidden>
+            ❦
+          </span>
           {finale.message.map((line, i) => (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + ordered.length * 0.16 + i * 0.5, duration: 0.9 }}
-            >
+            <p key={i} className={i === 0 ? "message-lead" : undefined}>
               {line}
-            </motion.p>
+            </p>
           ))}
-          {finale.signature && (
-            <motion.p
-              className="signature"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7 + ordered.length * 0.16 + finale.message.length * 0.5, duration: 1 }}
-            >
-              {finale.signature}
-            </motion.p>
-          )}
-        </div>
+          <span className="message-sign" aria-hidden>
+            ♡
+          </span>
+        </motion.div>
 
         <motion.div
           className="reveal-foot"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 + ordered.length * 0.16 + finale.message.length * 0.5 }}
+          transition={{ delay: msgDelay + 0.6 }}
         >
-          {finalMs != null && (
-            <span className="final-time">
-              Terminé en {formatTime(finalMs)}
-              {isRecord && <span className="record">★ nouveau record</span>}
-            </span>
-          )}
           <button className="cta cta--ghost" onClick={onReplay}>
             Rejouer
           </button>

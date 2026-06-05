@@ -33,9 +33,7 @@ export default function App() {
           />
         )}
 
-        {game.phase === "won" && (
-          <RevealScreen finalMs={game.finalMs} bestMs={game.bestMs} onReplay={game.reset} />
-        )}
+        {game.phase === "won" && <RevealScreen onReplay={game.reset} />}
 
         {game.phase === "timeup" && <TimeUpScreen onReplay={game.start} />}
       </motion.div>

@@ -5,7 +5,7 @@
 
 export const config = {
   /** Big script title on the start + reveal screens. */
-  title: "Xavila",
+  title: "XAVILA",
   /** Small line under the title on the start screen. */
   subtitle: "Replace les souvenirs dans l'ordre… avant que le temps ne file.",
   /** The two names shown on the title screen. */
