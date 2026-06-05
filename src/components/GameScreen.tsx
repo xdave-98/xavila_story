@@ -6,6 +6,7 @@ import { FloatingPhoto } from "./FloatingPhoto";
 import { Timeline } from "./Timeline";
 import { Timer } from "./Timer";
 import { LoveBackground } from "./LoveBackground";
+import { AmbientScene } from "./AmbientScene";
 import { config } from "../data/finale";
 
 interface Props {
@@ -80,6 +81,7 @@ export function GameScreen({ floating, placed, placedCount, total, timeLeft, dur
   return (
     <div className={`screen game-screen ${dragging ? "is-dragging" : ""}`}>
       <LoveBackground subtle />
+      <AmbientScene />
       {placedCount > 0 && <CatchBurst key={placedCount} />}
 
       <header className="game-header">

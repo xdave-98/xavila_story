@@ -256,6 +256,118 @@
   color: var(--ink-faint);
 }
 
+/* ===========================================================================
+   Ambient scene — festive lights/snow → cosy coffee steam (game screen)
+   =========================================================================== */
+.ambient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.ambient-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* Mood glows */
+.xmas-glow,
+.coffee-glow {
+  position: absolute;
+  inset: 0;
+}
+.xmas-glow {
+  background:
+    radial-gradient(58vw 42vh at 16% 0%, rgba(143, 174, 139, 0.24), transparent 60%),
+    radial-gradient(54vw 42vh at 84% 0%, rgba(207, 107, 94, 0.2), transparent 60%),
+    radial-gradient(85vw 55vh at 50% 108%, rgba(74, 104, 150, 0.16), transparent 65%);
+}
+.coffee-glow {
+  background:
+    radial-gradient(72vw 58vh at 50% 116%, rgba(176, 122, 69, 0.52), transparent 60%),
+    radial-gradient(42vw 42vh at 12% 92%, rgba(215, 165, 90, 0.32), transparent 60%),
+    radial-gradient(42vw 42vh at 88% 8%, rgba(232, 207, 160, 0.26), transparent 65%);
+}
+
+/* String lights */
+.lights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+}
+.bulb {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 9px 2px currentColor, 0 0 18px 5px currentColor;
+  animation: bulbTwinkle 2.6s ease-in-out infinite;
+}
+.bulb .stem {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, rgba(120, 90, 60, 0), rgba(120, 90, 60, 0.4));
+}
+@keyframes bulbTwinkle {
+  0%, 100% { opacity: 0.4; filter: brightness(0.75); }
+  50% { opacity: 1; filter: brightness(1.35); }
+}
+
+/* Falling snow */
+.snow {
+  position: absolute;
+  inset: 0;
+}
+.flake {
+  position: absolute;
+  top: -6%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+  opacity: 0;
+  animation-name: snowFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes snowFall {
+  0% { transform: translate(0, -10vh) rotate(0deg); opacity: 0; }
+  12% { opacity: 0.95; }
+  88% { opacity: 0.85; }
+  100% { transform: translate(var(--drift, 40px), 114vh) rotate(180deg); opacity: 0; }
+}
+
+/* Rising coffee steam */
+.steam {
+  position: absolute;
+  inset: 0;
+}
+.wisp {
+  position: absolute;
+  bottom: 6%;
+  height: 42vh;
+  border-radius: 50%;
+  background: linear-gradient(to top, rgba(255, 250, 242, 0) 0%, rgba(255, 248, 236, 0.55) 45%, rgba(255, 250, 242, 0) 100%);
+  filter: blur(11px);
+  opacity: 0;
+  transform-origin: bottom center;
+  animation-name: steamRise;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes steamRise {
+  0% { opacity: 0; transform: translate(0, 24px) scaleY(0.55) scaleX(0.9); }
+  25% { opacity: 0.55; }
+  60% { opacity: 0.4; transform: translate(12px, -26px) scaleY(1.1); }
+  100% { opacity: 0; transform: translate(-8px, -78px) scaleY(1.35); }
+}
+
 /* Catch celebration wash across the background (behind the photos) */
 .catch-fx {
   position: absolute;
