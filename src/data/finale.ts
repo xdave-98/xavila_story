@@ -23,8 +23,10 @@ export const finale = {
   message: [
     "Merci d'être entrée dans ma vie, ma petite Nila.",
     "Sache que je suis et serai toujours là pour toi, et que je veux être l'épaule sur laquelle tu peux te reposer et te confier.",
-    "Je t'aime très très très fort, et j'ai hâte qu'on continue notre fresque ensemble.",
+    "Je t'aime très très très fort, et j'ai hâte qu'on continue notre fresque…",
   ],
+  /** Big joyful flourish that bursts in at the very end (with confetti). */
+  cheer: "Ensemble !!!!",
   /** Tiny signature line at the very bottom (leave empty to hide). */
   signature: "",
 };

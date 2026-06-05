@@ -3,6 +3,7 @@ import { moments } from "../data/moments";
 import { config, finale } from "../data/finale";
 import { Petals } from "./Petals";
 import { LoveBackground } from "./LoveBackground";
+import { Confetti } from "./Confetti";
 
 interface Props {
   onReplay: () => void;
@@ -26,7 +27,8 @@ export function RevealScreen({ onReplay }: Props) {
       <div className="reveal-bg">
         <LoveBackground />
       </div>
-      <Petals count={26} variant="burst" />
+      <Petals count={22} variant="burst" />
+      <Confetti count={90} />
 
       <motion.div
         className="reveal-card"
@@ -84,9 +86,14 @@ export function RevealScreen({ onReplay }: Props) {
               {line}
             </p>
           ))}
-          <span className="message-sign" aria-hidden>
-            ♡
-          </span>
+          <motion.div
+            className="message-cheer-wrap"
+            initial={{ scale: 0, opacity: 0, rotate: -10 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ delay: msgDelay + 0.5, type: "spring", stiffness: 260, damping: 9 }}
+          >
+            <strong className="message-cheer">{finale.cheer}</strong>
+          </motion.div>
         </motion.div>
 
         <motion.div
