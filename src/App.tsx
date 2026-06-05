@@ -19,7 +19,7 @@ export default function App() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {game.phase === "start" && <StartScreen bestMs={game.bestMs} onStart={game.start} />}
+        {game.phase === "start" && <StartScreen onStart={game.start} />}
 
         {game.phase === "playing" && (
           <GameScreen

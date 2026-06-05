@@ -13,15 +13,15 @@ function rand(seed: number): number {
 export function LoveBackground() {
   const bokeh = useMemo(
     () =>
-      Array.from({ length: 14 }, (_, i) => {
+      Array.from({ length: 22 }, (_, i) => {
         const s = i + 1;
         return {
           id: i,
           left: rand(s) * 100,
-          size: 14 + rand(s + 0.4) * 60,
-          delay: rand(s + 0.7) * 14,
-          duration: 13 + rand(s + 1.1) * 12,
-          drift: (rand(s + 1.6) - 0.5) * 140,
+          size: 12 + rand(s + 0.4) * 70,
+          delay: rand(s + 0.7) * 16,
+          duration: 12 + rand(s + 1.1) * 14,
+          drift: (rand(s + 1.6) - 0.5) * 160,
         };
       }),
     [],
@@ -29,15 +29,32 @@ export function LoveBackground() {
 
   const twinkles = useMemo(
     () =>
-      Array.from({ length: 22 }, (_, i) => {
+      Array.from({ length: 34 }, (_, i) => {
         const s = i + 100;
         return {
           id: i,
           left: rand(s) * 100,
           top: rand(s + 0.5) * 100,
           delay: rand(s + 0.9) * 6,
-          duration: 2.4 + rand(s + 1.3) * 3,
-          size: 4 + rand(s + 1.7) * 6,
+          duration: 2.2 + rand(s + 1.3) * 3.2,
+          size: 4 + rand(s + 1.7) * 7,
+        };
+      }),
+    [],
+  );
+
+  const hearts = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, i) => {
+        const s = i + 300;
+        return {
+          id: i,
+          left: rand(s) * 100,
+          size: 12 + rand(s + 0.5) * 18,
+          delay: rand(s + 0.9) * 16,
+          duration: 14 + rand(s + 1.4) * 12,
+          drift: (rand(s + 1.9) - 0.5) * 120,
+          glyph: rand(s + 2.3) > 0.5 ? "❤" : "❀",
         };
       }),
     [],
@@ -48,6 +65,7 @@ export function LoveBackground() {
       <span className="aurora aurora--1" />
       <span className="aurora aurora--2" />
       <span className="aurora aurora--3" />
+      <span className="aurora aurora--4" />
 
       <div className="bokeh-layer">
         {bokeh.map((b) => (
@@ -63,6 +81,24 @@ export function LoveBackground() {
               ["--drift" as string]: `${b.drift}px`,
             }}
           />
+        ))}
+      </div>
+
+      <div className="hearts-layer">
+        {hearts.map((h) => (
+          <span
+            key={h.id}
+            className="love-heart"
+            style={{
+              left: `${h.left}%`,
+              fontSize: `${h.size}px`,
+              animationDelay: `${h.delay}s`,
+              animationDuration: `${h.duration}s`,
+              ["--drift" as string]: `${h.drift}px`,
+            }}
+          >
+            {h.glyph}
+          </span>
         ))}
       </div>
 
