@@ -1,0 +1,106 @@
+:root {
+  /* Warm & romantic palette */
+  --cream: #fbf5ec;
+  --cream-deep: #f4e9d8;
+  --cream-card: #fffaf2;
+  --blush: #e7b3b1;
+  --blush-soft: #f4d6d2;
+  --rose: #c87a86;
+  --rose-deep: #a85563;
+  --gold: #c2a14d;
+  --gold-soft: #ddc488;
+  --gold-line: rgba(194, 161, 77, 0.45);
+  --ink: #4a3b33;
+  --ink-soft: #8a7666;
+  --ink-faint: #b6a392;
+  --shadow-warm: 28px 28px 60px rgba(124, 92, 64, 0.16);
+  --shadow-soft: 0 10px 30px rgba(124, 92, 64, 0.14);
+  --shadow-lift: 0 18px 44px rgba(124, 92, 64, 0.26);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-script: "Dancing Script", cursive;
+  --font-body: "Mulish", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius: 18px;
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: light;
+  font-family: var(--font-body);
+  color: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 800px at 12% -10%, #fff8ee 0%, transparent 55%),
+    radial-gradient(1000px 700px at 110% 10%, #fae6e2 0%, transparent 50%),
+    radial-gradient(900px 900px at 50% 120%, #f6ead7 0%, transparent 55%),
+    var(--cream);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+::selection {
+  background: var(--blush-soft);
+  color: var(--rose-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
