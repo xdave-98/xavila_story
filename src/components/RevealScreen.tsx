@@ -59,15 +59,15 @@ export function RevealScreen({ onReplay }: Props) {
             </motion.figure>
           ))}
 
-          {/* The next, still-blank page of the fresque */}
+          {/* The next page of the fresque — what's next for us */}
           <motion.figure
             className="mural-item mural-item--next"
             initial={itemIn.initial}
             animate={itemIn.animate}
             transition={{ delay: BASE + n * STEP, type: "spring", stiffness: 200, damping: 18 }}
           >
-            <div className="mural-photo mural-photo--blank">
-              <span className="next-text">What's next?</span>
+            <div className="mural-photo">
+              <img src="/photos/next.jpg" alt="What's next" draggable={false} />
             </div>
           </motion.figure>
         </div>

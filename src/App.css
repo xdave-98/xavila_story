@@ -792,26 +792,6 @@
   border-radius: 4px;
   display: block;
 }
-/* Blank "what's next" tile — an empty page of the fresque */
-.mural-photo--blank {
-  display: grid;
-  place-items: center;
-  background: rgba(255, 250, 242, 0.6);
-  border: 2px dashed var(--gold-line);
-  box-shadow: inset 0 0 30px rgba(221, 196, 136, 0.18);
-  padding: 8px;
-}
-.mural-item--next:hover .mural-photo--blank {
-  border-color: var(--rose);
-}
-.next-text {
-  font-family: var(--font-script);
-  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
-  line-height: 1.15;
-  text-align: center;
-  color: var(--gold);
-  animation: numberGlow 2.8s ease-in-out infinite;
-}
 .mural-item figcaption {
   display: flex;
   flex-direction: column;
