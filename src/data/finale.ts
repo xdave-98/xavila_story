@@ -12,19 +12,18 @@ export const config = {
   names: "Xavier  &  Nila",
   /** Label on the start button. */
   ctaLabel: "Play a little Boonny Game",
-  /** Seconds on the clock. 9 photos → 80s is gentle; lower it to raise stakes. */
+  /** Seconds on the clock. 8 photos → 80s is gentle; lower it to raise stakes. */
   durationSeconds: 80,
 };
 
 export const finale = {
-  /** Headline on the reveal screen, once she wins. */
-  heading: "Et notre histoire continue…",
+  /** Headline on the reveal screen, once she wins (shown under the eyebrow). */
+  heading: "Le début de notre histoire",
   /** The love note. Each string is its own paragraph, faded in one by one. */
   message: [
-    "Tu viens de remettre nos plus beaux moments dans l'ordre,",
-    "mais la vérité, c'est qu'avec toi je perds toujours la notion du temps.",
-    "Merci d'être la plus belle page de mon histoire.",
+    "Merci d'être entrée dans ma vie, ma petite Nila.",
+    "Sache que je suis et serai toujours là pour toi, et que je veux être l'épaule sur laquelle tu peux te reposer et te confier. Je t'aime très très très fort, et j'ai hâte qu'on continue notre fresque.",
   ],
-  /** Tiny signature line at the very bottom. */
-  signature: "— Pour toi, avec tout mon amour",
+  /** Tiny signature line at the very bottom (leave empty to hide). */
+  signature: "",
 };

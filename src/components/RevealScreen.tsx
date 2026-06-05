@@ -24,7 +24,7 @@ export function RevealScreen({ finalMs, bestMs, onReplay }: Props) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
-        <span className="eyebrow">{config.title} · complète</span>
+        <span className="eyebrow">{config.title}</span>
         <h1 className="reveal-title">{finale.heading}</h1>
 
         <div className="mural">
@@ -40,8 +40,8 @@ export function RevealScreen({ finalMs, bestMs, onReplay }: Props) {
                 <img src={m.image} alt={m.title} draggable={false} />
               </div>
               <figcaption>
-                <strong>{m.title}</strong>
-                <span>{m.date}</span>
+                <strong>{m.revealTitle ?? m.title}</strong>
+                <span>{m.label}</span>
                 <em>{m.caption}</em>
               </figcaption>
             </motion.figure>
@@ -59,14 +59,16 @@ export function RevealScreen({ finalMs, bestMs, onReplay }: Props) {
               {line}
             </motion.p>
           ))}
-          <motion.p
-            className="signature"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 + ordered.length * 0.16 + finale.message.length * 0.5, duration: 1 }}
-          >
-            {finale.signature}
-          </motion.p>
+          {finale.signature && (
+            <motion.p
+              className="signature"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 + ordered.length * 0.16 + finale.message.length * 0.5, duration: 1 }}
+            >
+              {finale.signature}
+            </motion.p>
+          )}
         </div>
 
         <motion.div

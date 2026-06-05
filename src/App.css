@@ -457,9 +457,9 @@
 /* Floating photo */
 .floating-photo {
   position: absolute;
-  width: clamp(96px, 13vw, 150px);
+  width: clamp(132px, 14.5vw, 188px);
   aspect-ratio: 1 / 1;
-  margin: calc(clamp(96px, 13vw, 150px) / -2) 0 0 calc(clamp(96px, 13vw, 150px) / -2);
+  margin: calc(clamp(132px, 14.5vw, 188px) / -2) 0 0 calc(clamp(132px, 14.5vw, 188px) / -2);
   cursor: grab;
   touch-action: none;
   z-index: 10;

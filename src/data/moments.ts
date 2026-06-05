@@ -4,9 +4,11 @@
 // HOW TO PERSONALIZE:
 //   1. Drop your photos into  public/photos/  (jpg, png or webp).
 //   2. Point each `image` below at your file, e.g. image: "/photos/first.jpg".
-//   3. Edit `title`, `date` and `caption` to match the real memory.
+//   3. `title`   → short name shown in the game (on the placed slot).
+//      `label`   → the little caps category shown on the final reveal.
+//      `caption` → the one-line memory shown on the final reveal.
+//      `revealTitle` (optional) → overrides `title` on the reveal screen.
 //   4. `order` is the chronological position on the timeline (1 = first).
-//      Keep them 1..N with no gaps. Add or remove entries freely.
 //
 // Photos are web-optimized JPEGs; the full-resolution originals are kept in
 // data/originals/ (not committed).
@@ -15,71 +17,75 @@
 export interface Moment {
   /** Chronological position on the timeline (1 = the very first moment). */
   order: number;
-  /** Short name of the memory, shown on the placed card + reveal. */
+  /** Short name shown in the game (placed slot + alt text). */
   title: string;
-  /** Free-text date label (e.g. "Janvier 2022"). */
-  date: string;
+  /** Caps category line shown on the reveal (e.g. "NOTRE RENCONTRE"). */
+  label: string;
   /** One-line memory shown on the reveal screen. */
   caption: string;
   /** Path to the photo, served from /public. */
   image: string;
+  /** Optional name shown on the reveal instead of `title`. */
+  revealTitle?: string;
 }
 
 export const moments: Moment[] = [
   {
     order: 1,
     title: "EDF",
-    date: "Le tout début",
-    caption: "La première fois que nos regards se sont croisés.",
+    label: "NOTRE RENCONTRE",
+    caption: "Une petite dame arrive avec son gel hydroalcoolique.",
     image: "/photos/first.jpg",
   },
   {
     order: 2,
-    title: "In Seoul",
-    date: "À compléter",
-    caption: "Notre premier date, au coréen In Seoul.",
+    title: "In-Seoul",
+    label: "UN DÉLIRE COMMUN",
+    caption: "Quand on a commencé à délirer ensemble autour de la Corée.",
     image: "/photos/second.jpg",
   },
   {
     order: 3,
     title: "Pyramides",
-    date: "À compléter",
-    caption: "Un baiser à l'abri de bus de Pyramides, sous les lumières.",
+    revealTitle: "Le premier « date »",
+    label: "LA ROMANCE",
+    caption: "Quoi de mieux que l'abri de bus Pyramides pour notre premier bisou ?",
     image: "/photos/third.jpg",
   },
   {
     order: 4,
     title: "Tour Eiffel",
-    date: "À compléter",
-    caption: "« I love you », sur un banc au bord de la Seine.",
+    revealTitle: "Je t'aime",
+    label: "…",
+    caption: "Le premier d'une longue série.",
     image: "/photos/four.jpg",
   },
   {
     order: 5,
     title: "Sunshine",
-    date: "À compléter",
-    caption: "Notre petit golden retriever, notre rayon de soleil.",
+    label: "LA STAR",
+    caption: "Notre première Saint-Valentin.",
     image: "/photos/five.jpg",
   },
   {
     order: 6,
     title: "Mini-golf",
-    date: "À compléter",
-    caption: "Notre partie de mini-golf — la revanche t'attend encore.",
+    label: "UNE SOIRÉE COMPLIQUÉE",
+    caption: "Mais qui fait partie de notre histoire.",
     image: "/photos/six.jpg",
   },
   {
     order: 7,
-    title: "PSG, Champions",
-    date: "À compléter",
-    caption: "Le PSG, enfin rois d'Europe — et nous deux, déjà gagnants.",
+    title: "PSG",
+    label: "UNE DEUXIÈME ÉTOILE",
+    caption: "Tes yeux brillaient — merci de m'avoir fait vivre ça avec toi.",
     image: "/photos/seven.jpg",
   },
   {
     order: 8,
     title: "Boonny",
-    date: "À compléter",
-    caption: "Notre Boonny — moitié panda, moitié lapin, tout à nous.",
+    label: "NOTRE MOT",
+    caption: "Parce que ça nous va bien… À jamais ensemble.",
     image: "/photos/eight.jpg",
   },
 ];

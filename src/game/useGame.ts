@@ -12,8 +12,8 @@ const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
 // lane — never wandering off-screen or into a neighbour's space. The offsets
 // orbit a little ellipse around the anchor (see App.css `.photo-frame`).
 function makePath(): [Waypoint, Waypoint, Waypoint, Waypoint] {
-  const a = 15 + Math.random() * 8; // amplitude in px (~15–23)
-  const j = () => (Math.random() - 0.5) * 6;
+  const a = 26 + Math.random() * 12; // amplitude in px (~26–38)
+  const j = () => (Math.random() - 0.5) * 8;
   const r = () => Math.round((Math.random() - 0.5) * 6);
   return [
     { x: Math.round(a + j()), y: Math.round(-a * 0.55 + j()), r: r() },
@@ -36,14 +36,14 @@ function layoutMoments(): FloatingMoment[] {
   return shuffled.map((m, i) => {
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const baseX = 10 + (col + 0.5) * colStep + (Math.random() - 0.5) * colStep * 0.16;
-    const baseY = (rows === 1 ? 40 : 16 + (row / (rows - 1)) * 48) + (Math.random() - 0.5) * 5;
+    const baseX = 10 + (col + 0.5) * colStep + (Math.random() - 0.5) * colStep * 0.14;
+    const baseY = (rows === 1 ? 42 : 22 + (row / (rows - 1)) * 44) + (Math.random() - 0.5) * 4;
     return {
       ...m,
       baseX,
       baseY,
       tilt: (Math.random() - 0.5) * 8,
-      duration: 14 + Math.random() * 6,
+      duration: 11 + Math.random() * 6,
       delay: Math.random() * 8,
       path: makePath(),
     };
