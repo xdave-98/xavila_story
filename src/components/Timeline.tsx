@@ -9,23 +9,30 @@ interface Props {
   registerSlot: (order: number, el: HTMLDivElement | null) => void;
 }
 
+const RAIL_D = "M 20 38 C 200 14, 320 58, 500 34 S 820 14, 980 36";
+
 // The golden "fresque" along the bottom: a drawn-on timeline with numbered
 // slots. Each slot fills with its photo the moment it's correctly placed.
 export function Timeline({ slots, placed, hoverSlot, rejectedSlot, registerSlot }: Props) {
   return (
     <div className="timeline" aria-label="Frise chronologique">
       <svg className="timeline-rail" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden>
-        <motion.path
-          d="M 20 38 C 200 14, 320 58, 500 34 S 820 14, 980 36"
+        {/* flowing dashed rail */}
+        <path
+          className="rail-line"
+          d={RAIL_D}
           fill="none"
           stroke="var(--gold)"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeDasharray="6 10"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1.4, ease: "easeInOut" }}
         />
+        {/* light beads travelling along the rail */}
+        {[0, 2, 4].map((delay) => (
+          <circle key={delay} className="rail-bead" r="3.4" fill="var(--gold-soft)">
+            <animateMotion dur="6s" begin={`${delay}s`} repeatCount="indefinite" path={RAIL_D} />
+          </circle>
+        ))}
       </svg>
 
       <div className="timeline-slots">

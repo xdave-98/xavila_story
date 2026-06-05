@@ -494,6 +494,27 @@
   width: 100%;
   height: 56px;
   pointer-events: none;
+  overflow: visible;
+}
+/* Dashes flow continuously along the rail */
+.rail-line {
+  animation: railFlow 0.9s linear infinite, railFade 1.4s ease-out both;
+}
+@keyframes railFlow {
+  to { stroke-dashoffset: -16; }
+}
+@keyframes railFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* Glowing beads riding the rail */
+.rail-bead {
+  filter: drop-shadow(0 0 4px var(--gold-soft)) drop-shadow(0 0 8px rgba(221, 196, 136, 0.7));
+  animation: beadPulse 1.6s ease-in-out infinite;
+}
+@keyframes beadPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
 }
 .timeline-slots {
   position: relative;
