@@ -597,6 +597,107 @@
 }
 
 /* ===========================================================================
+   Lovely animated background (start screen)
+   =========================================================================== */
+.love-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Drifting aurora blobs — soft, blurred, slowly breathing colour */
+.aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+.aurora--1 {
+  width: 46vw;
+  height: 46vw;
+  top: -8vw;
+  left: -6vw;
+  background: radial-gradient(circle, var(--blush) 0%, transparent 70%);
+  animation: aurora1 22s ease-in-out infinite;
+}
+.aurora--2 {
+  width: 40vw;
+  height: 40vw;
+  bottom: -10vw;
+  right: -8vw;
+  background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+  animation: aurora2 27s ease-in-out infinite;
+}
+.aurora--3 {
+  width: 34vw;
+  height: 34vw;
+  top: 30%;
+  left: 55%;
+  background: radial-gradient(circle, #f3c1c6 0%, transparent 70%);
+  animation: aurora3 31s ease-in-out infinite;
+}
+@keyframes aurora1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8vw, 6vw) scale(1.18); }
+}
+@keyframes aurora2 {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  50% { transform: translate(-7vw, -5vw) scale(1.25); }
+}
+@keyframes aurora3 {
+  0%, 100% { transform: translate(0, 0) scale(0.95); }
+  50% { transform: translate(-6vw, 4vw) scale(1.15); }
+}
+
+/* Rising bokeh lights */
+.bokeh-layer {
+  position: absolute;
+  inset: 0;
+}
+.bokeh {
+  position: absolute;
+  bottom: -10%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 250, 242, 0.9), rgba(231, 179, 177, 0.35) 55%, transparent 72%);
+  box-shadow: 0 0 22px rgba(231, 179, 177, 0.35);
+  opacity: 0;
+  filter: blur(0.5px);
+  animation-name: riseBokeh;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+@keyframes riseBokeh {
+  0% { transform: translate(0, 0) scale(0.7); opacity: 0; }
+  12% { opacity: 0.75; }
+  88% { opacity: 0.6; }
+  100% { transform: translate(var(--drift, 60px), -112vh) scale(1.1); opacity: 0; }
+}
+
+/* Twinkling sparkles */
+.twinkle-layer {
+  position: absolute;
+  inset: 0;
+}
+.twinkle {
+  position: absolute;
+  color: var(--gold);
+  opacity: 0;
+  transform: scale(0.4);
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 0.9; transform: scale(1) rotate(45deg); }
+}
+
+/* ===========================================================================
    Petals / hearts
    =========================================================================== */
 .petals {

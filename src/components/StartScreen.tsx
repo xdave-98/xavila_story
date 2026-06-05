@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { config } from "../data/finale";
 import { Petals } from "./Petals";
+import { LoveBackground } from "./LoveBackground";
 import { formatTime } from "../game/format";
 
 interface Props {
@@ -20,6 +21,7 @@ const rise = {
 export function StartScreen({ bestMs, onStart }: Props) {
   return (
     <div className="screen start-screen">
+      <LoveBackground />
       <Petals count={16} />
       <motion.div className="start-card" variants={container} initial="hidden" animate="show">
         <motion.span className="eyebrow" variants={rise}>
@@ -46,7 +48,7 @@ export function StartScreen({ bestMs, onStart }: Props) {
         </motion.ul>
 
         <motion.button className="cta" variants={rise} onClick={onStart} whileHover={{ y: -3 }} whileTap={{ scale: 0.97 }}>
-          Commencer
+          {config.ctaLabel}
           <span className="cta-heart">❤</span>
         </motion.button>
 

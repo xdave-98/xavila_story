@@ -5,11 +5,13 @@
 
 export const config = {
   /** Big script title on the start + reveal screens. */
-  title: "Notre histoire",
+  title: "Xavila",
   /** Small line under the title on the start screen. */
   subtitle: "Replace les souvenirs dans l'ordre… avant que le temps ne file.",
   /** The two names shown on the title screen. */
   names: "Xavier  &  Nila",
+  /** Label on the start button. */
+  ctaLabel: "Play a little Boonny Game",
   /** Seconds on the clock. 9 photos → 80s is gentle; lower it to raise stakes. */
   durationSeconds: 80,
 };
