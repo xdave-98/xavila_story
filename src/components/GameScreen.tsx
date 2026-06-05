@@ -93,7 +93,7 @@ export function GameScreen({ floating, placed, placedCount, total, timeLeft, dur
           />
         ))}
         {floating.length > 0 && (
-          <p className="sky-hint">Attrape un souvenir et pose-le sur la frise ↓</p>
+          <p className="sky-hint">Do you remember our story in the correct order&nbsp;?</p>
         )}
       </div>
 
