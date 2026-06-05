@@ -2,14 +2,14 @@
 // Notre histoire — the moments of your love story, in chronological order.
 //
 // HOW TO PERSONALIZE:
-//   1. Drop your real photos into  public/photos/  (jpg, png or webp).
-//   2. Point each `image` below at your file, e.g. image: "/photos/edf.jpg".
+//   1. Drop your photos into  public/photos/  (jpg, png or webp).
+//   2. Point each `image` below at your file, e.g. image: "/photos/first.jpg".
 //   3. Edit `title`, `date` and `caption` to match the real memory.
 //   4. `order` is the chronological position on the timeline (1 = first).
 //      Keep them 1..N with no gaps. Add or remove entries freely.
 //
-// The images currently shipped in public/photos/ are representative pictures
-// pulled from the web as stand-ins — replace them with your own photos.
+// Photos are web-optimized JPEGs; the full-resolution originals are kept in
+// data/originals/ (not committed).
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface Moment {
@@ -31,62 +31,55 @@ export const moments: Moment[] = [
     title: "EDF",
     date: "Le tout début",
     caption: "La première fois que nos regards se sont croisés.",
-    image: "/photos/edf.jpg",
+    image: "/photos/first.jpg",
   },
   {
     order: 2,
-    title: "In-Seoul",
+    title: "In Seoul",
     date: "À compléter",
-    caption: "Notre premier vrai rendez-vous, dans ce petit coréen de Paris.",
-    image: "/photos/in-seoul.jpg",
+    caption: "Notre premier date, au coréen In Seoul.",
+    image: "/photos/second.jpg",
   },
   {
     order: 3,
-    title: "L'abri de bus",
+    title: "Pyramides",
     date: "À compléter",
-    caption: "Cet abri de bus près des Pyramides… tu te souviens ?",
-    image: "/photos/abribus.jpg",
+    caption: "Un baiser à l'abri de bus de Pyramides, sous les lumières.",
+    image: "/photos/third.jpg",
   },
   {
     order: 4,
     title: "Tour Eiffel",
     date: "À compléter",
-    caption: "Un baiser au pied de la Dame de fer.",
-    image: "/photos/eiffel-kiss.jpg",
+    caption: "« I love you », sur un banc au bord de la Seine.",
+    image: "/photos/four.jpg",
   },
   {
     order: 5,
-    title: "Le golden",
+    title: "Sunshine",
     date: "À compléter",
-    caption: "Le petit golden retriever qui nous a fait fondre.",
-    image: "/photos/golden-retriever.jpg",
+    caption: "Notre petit golden retriever, notre rayon de soleil.",
+    image: "/photos/five.jpg",
   },
   {
     order: 6,
-    title: "Matcha & Americano",
+    title: "Mini-golf",
     date: "À compléter",
-    caption: "Toi le matcha, moi l'americano glacé — notre rituel.",
-    image: "/photos/matcha-americano.jpg",
+    caption: "Notre partie de mini-golf — la revanche t'attend encore.",
+    image: "/photos/six.jpg",
   },
   {
     order: 7,
-    title: "Mini-golf Ocean",
+    title: "PSG, Champions",
     date: "À compléter",
-    caption: "La revanche au mini-golf Ocean est toujours en attente.",
-    image: "/photos/minigolf.jpg",
+    caption: "Le PSG, enfin rois d'Europe — et nous deux, déjà gagnants.",
+    image: "/photos/seven.jpg",
   },
   {
     order: 8,
     title: "Boonny",
     date: "À compléter",
     caption: "Notre Boonny — moitié panda, moitié lapin, tout à nous.",
-    image: "/photos/boonny.jpg",
-  },
-  {
-    order: 9,
-    title: "PSG, Champions",
-    date: "À compléter",
-    caption: "Le PSG soulève enfin la Ligue des Champions, et nous aussi on a gagné.",
-    image: "/photos/psg-ucl.jpg",
+    image: "/photos/eight.jpg",
   },
 ];

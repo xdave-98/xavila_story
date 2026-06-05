@@ -15,6 +15,9 @@ dist-ssr
 # Best-time store written by the backend at runtime
 server/scores.json
 
+# Full-resolution photo originals (web-optimized copies live in public/photos)
+data/originals/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
