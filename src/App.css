@@ -531,6 +531,36 @@
   font-weight: 600;
   color: var(--gold);
   opacity: 0.7;
+  animation: numberGlow 2.8s ease-in-out infinite;
+  animation-delay: var(--li-delay, 0s);
+}
+@keyframes numberGlow {
+  0%, 100% { opacity: 0.5; text-shadow: 0 0 0 transparent; transform: scale(1); }
+  50% { opacity: 1; text-shadow: 0 0 16px rgba(194, 161, 77, 0.8); transform: scale(1.08); }
+}
+
+/* Empty slots breathe like a string of warm lights (staggered per slot) */
+.slot:not(.slot--placed):not(.slot--hover):not(.slot--rejected) .slot-frame {
+  animation: slotBreathe 2.8s ease-in-out infinite;
+  animation-delay: var(--li-delay, 0s);
+}
+@keyframes slotBreathe {
+  0%, 100% {
+    border-color: var(--gold-line);
+    box-shadow: 0 0 0 0 rgba(194, 161, 77, 0);
+  }
+  50% {
+    border-color: var(--gold);
+    box-shadow: 0 0 20px 1px rgba(221, 196, 136, 0.5), inset 0 0 14px rgba(221, 196, 136, 0.28);
+  }
+}
+.slot:not(.slot--placed) .slot-dot {
+  animation: dotTwinkle 2.8s ease-in-out infinite;
+  animation-delay: var(--li-delay, 0s);
+}
+@keyframes dotTwinkle {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(194, 161, 77, 0.14); }
+  50% { box-shadow: 0 0 12px 3px rgba(221, 196, 136, 0.7), 0 0 0 4px rgba(194, 161, 77, 0.2); }
 }
 .slot--hover .slot-frame {
   transform: translateY(-8px) scale(1.05);

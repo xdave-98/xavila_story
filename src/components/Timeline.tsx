@@ -37,6 +37,7 @@ export function Timeline({ slots, placed, hoverSlot, rejectedSlot, registerSlot 
             <div
               key={slot.order}
               ref={(el) => registerSlot(slot.order, el)}
+              style={{ ["--li-delay" as string]: `${i * 0.22}s` }}
               className={[
                 "slot",
                 isPlaced ? "slot--placed" : "",
