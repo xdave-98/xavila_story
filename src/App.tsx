@@ -37,9 +37,7 @@ export default function App() {
           <RevealScreen finalMs={game.finalMs} bestMs={game.bestMs} onReplay={game.reset} />
         )}
 
-        {game.phase === "timeup" && (
-          <TimeUpScreen placedCount={game.placedCount} total={game.total} onReplay={game.start} />
-        )}
+        {game.phase === "timeup" && <TimeUpScreen onReplay={game.start} />}
       </motion.div>
     </AnimatePresence>
   );

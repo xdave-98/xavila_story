@@ -170,6 +170,36 @@
   color: var(--ink-faint);
 }
 
+/* Fail screen — panda gazing at a crying bunny */
+.fail-emojis {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: clamp(3.2rem, 9vw, 5rem);
+  line-height: 1;
+}
+.fail-panda {
+  display: inline-block;
+  transform-origin: bottom center;
+  /* nudge the gaze toward the bunny on the right */
+  filter: drop-shadow(0 6px 10px rgba(124, 92, 64, 0.18));
+}
+.fail-bunny {
+  position: relative;
+  display: inline-block;
+}
+.fail-bunny-face {
+  display: inline-block;
+  filter: drop-shadow(0 6px 10px rgba(124, 92, 64, 0.18));
+}
+.tear {
+  position: absolute;
+  left: 32%;
+  top: 46%;
+  font-size: 0.42em;
+}
+
 /* ===========================================================================
    Game screen
    =========================================================================== */
