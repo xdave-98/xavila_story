@@ -40,8 +40,8 @@ function layoutMoments(): FloatingMoment[] {
       baseX,
       baseY,
       tilt: (Math.random() - 0.5) * 10,
-      duration: 8 + Math.random() * 5,
-      delay: Math.random() * 8,
+      duration: 17 + Math.random() * 9,
+      delay: Math.random() * 12,
       path: makePath(baseX),
     };
   });
