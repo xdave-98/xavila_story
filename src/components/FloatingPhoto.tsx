@@ -2,6 +2,7 @@ import { memo, useState } from "react";
 import { motion, type PanInfo } from "framer-motion";
 import type { CSSProperties } from "react";
 import type { FloatingMoment, Point } from "../game/types";
+import { asset } from "../lib/asset";
 
 interface Props {
   moment: FloatingMoment;
@@ -59,7 +60,7 @@ function FloatingPhotoBase({ moment, onDragMove, onDrop, onDragStateChange }: Pr
       }}
     >
       <div className="photo-frame" style={frameStyle}>
-        <img src={moment.image} alt={moment.title} draggable={false} />
+        <img src={asset(moment.image)} alt={moment.title} draggable={false} />
         <span className="photo-grip" aria-hidden>
           ✦
         </span>

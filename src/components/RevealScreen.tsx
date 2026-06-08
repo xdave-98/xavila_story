@@ -5,6 +5,7 @@ import { config, finale } from "../data/finale";
 import { Petals } from "./Petals";
 import { LoveBackground } from "./LoveBackground";
 import { Confetti } from "./Confetti";
+import { asset } from "../lib/asset";
 
 interface Props {
   onReplay: () => void;
@@ -73,7 +74,7 @@ export function RevealScreen({ onReplay }: Props) {
                 onClick={() => setZoom({ src: m.image, alt: m.revealTitle ?? m.title })}
                 aria-label={`Agrandir « ${m.revealTitle ?? m.title} »`}
               >
-                <img src={m.image} alt={m.title} draggable={false} />
+                <img src={asset(m.image)} alt={m.title} draggable={false} />
               </button>
               <figcaption>
                 <strong>{m.revealTitle ?? m.title}</strong>
@@ -96,7 +97,7 @@ export function RevealScreen({ onReplay }: Props) {
               onClick={() => setZoom({ src: NEXT_IMAGE, alt: "What's next?" })}
               aria-label="Agrandir « What's next? »"
             >
-              <img src={NEXT_IMAGE} alt="What's next" draggable={false} />
+              <img src={asset(NEXT_IMAGE)} alt="What's next" draggable={false} />
             </button>
             <figcaption>
               <strong>What's next ?</strong>
@@ -157,7 +158,7 @@ export function RevealScreen({ onReplay }: Props) {
               exit={{ scale: 0.86, opacity: 0 }}
               transition={{ type: "spring", stiffness: 240, damping: 22 }}
             >
-              <img src={zoom.src} alt={zoom.alt} draggable={false} />
+              <img src={asset(zoom.src)} alt={zoom.alt} draggable={false} />
             </motion.figure>
           </motion.div>
         )}

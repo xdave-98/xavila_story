@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { Moment } from "../data/moments";
+import { asset } from "../lib/asset";
 
 interface Props {
   slots: Moment[]; // ordered 1..N
@@ -63,7 +64,7 @@ export function Timeline({ slots, placed, hoverSlot, rejectedSlot, registerSlot 
                       animate={{ scale: 1, opacity: 1, rotate: 0 }}
                       transition={{ type: "spring", stiffness: 260, damping: 18 }}
                     >
-                      <img src={slot.image} alt={slot.title} draggable={false} />
+                      <img src={asset(slot.image)} alt={slot.title} draggable={false} />
                       <span className="slot-caption">{slot.title}</span>
                       <RewardBurst />
                     </motion.div>
